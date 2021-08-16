@@ -4,14 +4,16 @@ using Application.Application.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Application.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210815212234_ColaboradorEquipe")]
+    partial class ColaboradorEquipe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,33 +116,6 @@ namespace Application.Migrations
                             Id = new Guid("4fffc135-ccc8-412e-9505-192bc6bd1cca"),
                             Descricao = "Gestor",
                             PerfilEnum = 1
-                        });
-                });
-
-            modelBuilder.Entity("Application.Appliaction.Domain.Entities.Projeto", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Projeto");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("c286cad8-6681-4a89-bef6-bf3c0097d9a7"),
-                            Descricao = "Projeto Teste 01"
-                        },
-                        new
-                        {
-                            Id = new Guid("50953752-09b2-41e5-9b3e-52477cf45aea"),
-                            Descricao = "Projeto Teste 02"
                         });
                 });
 
