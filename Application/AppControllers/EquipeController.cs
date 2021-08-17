@@ -27,9 +27,7 @@ namespace Application.AppControllers
         [HttpGet]
         public async Task<IActionResult> GetEquipes()
         {
-            if (!_verificarPerfilGestor
-                .SetToken(Request.Headers["Authorization"].ToString())
-                .TemPerfilGestor())
+            if (!_verificarPerfilGestor.TemPerfilGestor())
             {
                 return BadRequest(ConstantesMessages.PERFIL_NAO_PERMITIDO);
             }
@@ -43,9 +41,7 @@ namespace Application.AppControllers
         public async Task<IActionResult> Create([FromBody] EquipeCreateCommand command)
         {
 
-            if (!_verificarPerfilGestor
-                 .SetToken(Request.Headers["Authorization"].ToString())
-                 .TemPerfilGestor())
+            if (!_verificarPerfilGestor.TemPerfilGestor())
             {
                 return BadRequest(ConstantesMessages.PERFIL_NAO_PERMITIDO);
             }
@@ -58,9 +54,7 @@ namespace Application.AppControllers
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] EquipeUpdateCommand command)
         {
-            if (!_verificarPerfilGestor
-                 .SetToken(Request.Headers["Authorization"].ToString())
-                 .TemPerfilGestor())
+            if (!_verificarPerfilGestor.TemPerfilGestor())
             {
                 return BadRequest(ConstantesMessages.PERFIL_NAO_PERMITIDO);
             }
