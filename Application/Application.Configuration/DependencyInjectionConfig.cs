@@ -1,4 +1,5 @@
 ﻿using Application.Appliaction.Domain.Interfaces;
+using Application.Application.Core.Services;
 using Application.Application.Infrastructure.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +14,7 @@ namespace Application.Application.Configuration
             services.AddScoped<IColaboradorRepository, ColaboradorRepository>();
             services.AddScoped<IColaboradorEquipeRepository, ColaboradorEquipeRepository>();
             services.AddScoped<IProjetoRepository, ProjetoRepository>();
+            services.AddScoped<IVerificarPerfilGestor, VerificarPerfilGestor>();
         }
     }
 }

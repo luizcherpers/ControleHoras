@@ -36,7 +36,9 @@ namespace Application.Application.Infrastructure.Repository
 
         public async Task<Colaborador> GetByEmailSenha(string email, string senha)
         {
-            return await _context.Colaborador.FirstOrDefaultAsync(x => x.Email == email && x.Senha == senha ) ;
+            return await _context.Colaborador
+                .Include(x => x.Perfil)
+                .FirstOrDefaultAsync(x => x.Email == email && x.Senha == senha ) ;
         }
 
         public async Task<Colaborador> GetById(Guid id)
