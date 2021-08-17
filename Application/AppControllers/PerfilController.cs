@@ -1,8 +1,10 @@
 ﻿using Application.Appliaction.Domain.Contantes;
 using Application.Appliaction.Domain.Interfaces;
+using Application.Application.Core.Extension;
 using Application.Application.Core.Queries.Perfil;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -16,7 +18,7 @@ namespace Application.AppControllers
         private readonly IMediator _mediator;
         private readonly IVerificarPerfilGestor _verificarPerfilGestor;
 
-        public PerfilController(IMediator mediator, IVerificarPerfilGestor verificarPerfilGestor)
+        public PerfilController(IMediator mediator, IVerificarPerfilGestor verificarPerfilGestor )
         {
             _mediator = mediator;
             _verificarPerfilGestor = verificarPerfilGestor;
@@ -25,9 +27,7 @@ namespace Application.AppControllers
         [HttpGet]
         public async Task<IActionResult> GetPerfis()
         {
-            if (!_verificarPerfilGestor
-                .SetToken(Request.Headers["Authorization"].ToString())
-                .TemPerfilGestor())
+            if (!_verificarPerfilGestor.TemPerfilGestor())
             {
                 return BadRequest(ConstantesMessages.PERFIL_NAO_PERMITIDO);
             }

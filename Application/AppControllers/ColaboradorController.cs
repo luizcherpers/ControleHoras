@@ -26,9 +26,7 @@ namespace Application.AppControllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            if (!_verificarPerfilGestor
-                .SetToken(Request.Headers["Authorization"].ToString())
-                .TemPerfilGestor())
+            if (!_verificarPerfilGestor.TemPerfilGestor())
             {
                 return BadRequest(ConstantesMessages.PERFIL_NAO_PERMITIDO);
             }
@@ -41,9 +39,7 @@ namespace Application.AppControllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] ColaboradorCreateCommand command)
         {
-            if (!_verificarPerfilGestor
-                .SetToken(Request.Headers["Authorization"].ToString())
-                .TemPerfilGestor())
+            if (!_verificarPerfilGestor.TemPerfilGestor())
             {
                 return BadRequest(ConstantesMessages.PERFIL_NAO_PERMITIDO);
             }
@@ -56,9 +52,7 @@ namespace Application.AppControllers
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] ColaboradorUpdateCommand command)
         {
-            if (!_verificarPerfilGestor
-                .SetToken(Request.Headers["Authorization"].ToString())
-                .TemPerfilGestor())
+            if (!_verificarPerfilGestor.TemPerfilGestor())
             {
                 return BadRequest(ConstantesMessages.PERFIL_NAO_PERMITIDO);
             }
