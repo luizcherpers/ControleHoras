@@ -1,15 +1,12 @@
 ﻿
 using Application.Appliaction.Domain.Interfaces;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Application.Appliaction.Domain.Interfaces.Queries;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Application.Core.Queries.Equipes
 {
-    public class EquipeHandler : IRequestHandler<EquipeRequest, EquipeResult>
+    public class EquipeHandler : IQueryHandler<EquipeRequest, EquipeResult>
     {
         private readonly IEquipeRepository _equipeRepository;
 

@@ -13,5 +13,6 @@ namespace Application.Appliaction.Domain.Interfaces
         Task<int> Update(Colaborador colaborador);
         Task<int> Delete(Colaborador colaborador);
         Task<IEnumerable<Colaborador>> GetAll();
+        Task<Colaborador> GetByEmailSenha(string email, string senha);
     }
 }

@@ -1,10 +1,11 @@
 ﻿using Application.Appliaction.Domain.Contantes;
 using Application.Appliaction.Domain.Interfaces;
-using Application.Application.Core.Commands.Colaboradores;
-using Application.Application.Core.Queries.Colaboradores;
+using Application.Application.Core.Commands.Projetos;
+using Application.Application.Core.Queries.Projetos;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace Application.AppControllers
@@ -12,38 +13,54 @@ namespace Application.AppControllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class ColaboradorController : Controller
+    public class ProjetoController : Controller
     {
         private readonly IMediator _mediator;
         private readonly IVerificarPerfilGestor _verificarPerfilGestor;
 
-        public ColaboradorController(IMediator mediator, IVerificarPerfilGestor verificarPerfilGestor)
+        public ProjetoController(IMediator mediator, IVerificarPerfilGestor verificarPerfilGestor)
         {
             _mediator = mediator;
             _verificarPerfilGestor = verificarPerfilGestor;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById([FromRoute] Guid id)
+        {
+
+            if (!_verificarPerfilGestor
+                 .SetToken(Request.Headers["Authorization"].ToString())
+                 .TemPerfilGestor())
+            {
+                return BadRequest(ConstantesMessages.PERFIL_NAO_PERMITIDO);
+            }
+
+            var response = await _mediator.Send(new ProjetoGetByIdRequest( id ));
+
+            return Ok(response);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             if (!_verificarPerfilGestor
-                .SetToken(Request.Headers["Authorization"].ToString())
-                .TemPerfilGestor())
+                 .SetToken(Request.Headers["Authorization"].ToString())
+                 .TemPerfilGestor())
             {
                 return BadRequest(ConstantesMessages.PERFIL_NAO_PERMITIDO);
             }
 
-            var response = await _mediator.Send(new ColaboradorAllRequest());
+            var response = await _mediator.Send(new ProjetoGetAllRequest());
 
             return Ok(response);
         }
-
+        
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] ColaboradorCreateCommand command)
+        public async Task<IActionResult> Create([FromBody] ProjetoCreateCommand command)
         {
             if (!_verificarPerfilGestor
-                .SetToken(Request.Headers["Authorization"].ToString())
-                .TemPerfilGestor())
+                 .SetToken(Request.Headers["Authorization"].ToString())
+                 .TemPerfilGestor())
             {
                 return BadRequest(ConstantesMessages.PERFIL_NAO_PERMITIDO);
             }
@@ -54,11 +71,12 @@ namespace Application.AppControllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] ColaboradorUpdateCommand command)
+        public async Task<IActionResult> Update([FromBody] ProjetoUpdateCommand command)
         {
+
             if (!_verificarPerfilGestor
-                .SetToken(Request.Headers["Authorization"].ToString())
-                .TemPerfilGestor())
+                 .SetToken(Request.Headers["Authorization"].ToString())
+                 .TemPerfilGestor())
             {
                 return BadRequest(ConstantesMessages.PERFIL_NAO_PERMITIDO);
             }
@@ -66,6 +84,6 @@ namespace Application.AppControllers
             var response = await _mediator.Send(command);
 
             return Ok(response);
-        }
+        }        
     }
 }

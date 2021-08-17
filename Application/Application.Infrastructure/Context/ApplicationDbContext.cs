@@ -15,6 +15,9 @@ namespace Application.Application.Infrastructure.Context
         public DbSet<Perfil> Perfil { get; set; }
         public DbSet<Colaborador> Colaborador { get; set; }
         public DbSet<Equipe> Equipe { get; set; }
+        public DbSet<ColaboradorEquipe> ColaboradorEquipe { get; set; }
+        public DbSet<Projeto> Projeto { get; set; }
+        public DbSet<ProjetoHoras> ProjetoHoras { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -23,7 +26,7 @@ namespace Application.Application.Infrastructure.Context
             builder.ApplyConfiguration(new PerfilMapping());
             builder.ApplyConfiguration(new EquipeMapping());
             builder.ApplyConfiguration(new ColaboradorMapping());
-
+            builder.ApplyConfiguration(new ProjetoMapping());
         }
     }
 }

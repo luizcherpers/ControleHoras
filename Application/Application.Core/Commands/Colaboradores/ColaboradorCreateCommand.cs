@@ -1,5 +1,6 @@
 ﻿using Application.Appliaction.Domain.Enumerados;
 using Application.Appliaction.Domain.Interfaces.Commands;
+using System;
 
 namespace Application.Application.Core.Commands.Colaboradores
 {
@@ -9,5 +10,6 @@ namespace Application.Application.Core.Commands.Colaboradores
         public string Email { get; set; }
         public string Senha { get; set; }
         public PerfilEnum PerfilEnum { get; set; }
+        public Guid EquipeId { get; set; }
     }
 }
