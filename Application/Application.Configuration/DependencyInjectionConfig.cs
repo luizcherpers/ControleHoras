@@ -1,6 +1,8 @@
 ﻿using Application.Appliaction.Domain.Interfaces;
 using Application.Application.Core.Services;
+using Application.Application.Core.User;
 using Application.Application.Infrastructure.Repository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.Application.Configuration
@@ -15,6 +17,10 @@ namespace Application.Application.Configuration
             services.AddScoped<IColaboradorEquipeRepository, ColaboradorEquipeRepository>();
             services.AddScoped<IProjetoRepository, ProjetoRepository>();
             services.AddScoped<IVerificarPerfilGestor, VerificarPerfilGestor>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IAppUser, AppUser>();
+            services.AddScoped<IHorasTrabalhadasRepository, HorasTrabalhadasRepository>();
         }
     }
 }

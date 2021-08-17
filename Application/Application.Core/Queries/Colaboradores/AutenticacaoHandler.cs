@@ -46,7 +46,9 @@ namespace Application.Application.Core.Queries.Colaboradores
             var claims = new[] {
                 new Claim(ClaimTypes.Name, colaborador.Nome),
                 new Claim(ClaimTypes.Email, colaborador.Email),
-                new Claim("Perfil", colaborador.Perfil.PerfilEnum.ToString())
+                new Claim("Perfil", colaborador.Perfil.PerfilEnum.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, colaborador.Id.ToString())
+
             };
 
             var secretKey = _configuration.GetValue<string>("SecretKey");

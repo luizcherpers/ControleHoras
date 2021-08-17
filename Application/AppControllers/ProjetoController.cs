@@ -28,9 +28,7 @@ namespace Application.AppControllers
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
 
-            if (!_verificarPerfilGestor
-                 .SetToken(Request.Headers["Authorization"].ToString())
-                 .TemPerfilGestor())
+            if (!_verificarPerfilGestor.TemPerfilGestor())
             {
                 return BadRequest(ConstantesMessages.PERFIL_NAO_PERMITIDO);
             }
@@ -43,9 +41,7 @@ namespace Application.AppControllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            if (!_verificarPerfilGestor
-                 .SetToken(Request.Headers["Authorization"].ToString())
-                 .TemPerfilGestor())
+            if (!_verificarPerfilGestor.TemPerfilGestor())
             {
                 return BadRequest(ConstantesMessages.PERFIL_NAO_PERMITIDO);
             }
@@ -58,9 +54,7 @@ namespace Application.AppControllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] ProjetoCreateCommand command)
         {
-            if (!_verificarPerfilGestor
-                 .SetToken(Request.Headers["Authorization"].ToString())
-                 .TemPerfilGestor())
+            if (!_verificarPerfilGestor.TemPerfilGestor())
             {
                 return BadRequest(ConstantesMessages.PERFIL_NAO_PERMITIDO);
             }
@@ -74,9 +68,7 @@ namespace Application.AppControllers
         public async Task<IActionResult> Update([FromBody] ProjetoUpdateCommand command)
         {
 
-            if (!_verificarPerfilGestor
-                 .SetToken(Request.Headers["Authorization"].ToString())
-                 .TemPerfilGestor())
+            if (!_verificarPerfilGestor.TemPerfilGestor())
             {
                 return BadRequest(ConstantesMessages.PERFIL_NAO_PERMITIDO);
             }
