@@ -21,6 +21,11 @@ namespace Application.AppControllers
             _appUser = appUser;
         }
 
+        /// <summary>
+        /// Método para realizar o lançamento de horas trabalhadas
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] RegistrarCreateCommand command)
         {
@@ -30,6 +35,11 @@ namespace Application.AppControllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Método para realizar a atualização de uma lançamento de horas trabalhadas
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] RegistrarUpdateCommand command)
         {
