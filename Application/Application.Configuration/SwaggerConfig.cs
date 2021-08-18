@@ -15,7 +15,7 @@ namespace Application.Application.Configuration
                 {
                     Title = "Controle de Horas",
                     Description = "Sistema para controle de horas",
-                    Contact = new OpenApiContact() { Name = "", Email = "" },
+                    Contact = new OpenApiContact() { Name = "Controle de horas", Email = "" },
                     License = new OpenApiLicense() { Name = "" }
                 });
 
