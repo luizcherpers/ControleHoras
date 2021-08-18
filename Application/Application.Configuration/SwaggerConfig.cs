@@ -14,9 +14,9 @@ namespace Application.Application.Configuration
                 c.SwaggerDoc("v1", new OpenApiInfo()
                 {
                     Title = "Controle de Horas",
-                    Description = "Sistema para controle de coras",
-                    Contact = new OpenApiContact() { Name = "Ambev", Email = "" },
-                    License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
+                    Description = "Sistema para controle de horas",
+                    Contact = new OpenApiContact() { Name = "", Email = "" },
+                    License = new OpenApiLicense() { Name = "" }
                 });
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
